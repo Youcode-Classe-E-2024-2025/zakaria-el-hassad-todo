@@ -3,88 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/output.css">
-    <title>Document</title>
-    <style>
-        /* Animation classes using Tailwind CSS */
-        .modal-animation {
-            @apply opacity-0 scale-75 transition-all duration-300 ease-in-out;
-        }
-        .modal-animation.show {
-            @apply opacity-100 scale-100;
-        }
-    </style>
+    <title>Show More Text</title>
 </head>
-<body class="">
-
-    <!-- Navbar -->
-    <nav class="flex flex-wrap justify-center items-center gap-12 my-10">
-        <button type="button" id="openModalButton" onclick="toggleModal()" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700">Add model</button>
-        <input type="search" name="search" id="search" placeholder="search" class="border border-black border-x-4 px-10 py-2 rounded-3xl">
-    </nav>
-
-    <!-- Main content (Tasks lists) -->
-    <main class="flex flex-wrap justify-center items-center my-[50px] gap-[120px]">
-        <!-- Add sections for "To do", "Doing", and "Done" with task cards as in your original code -->
-    </main>
-
-    <!-- Add Task Form Modal -->
-    <div id="addModal" class="hidden modal-animation fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
-        <section class="bg-black text-white border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl max-w-lg">
-            <div class="flex justify-center items-center my-2">
-                <span class="border border-gray-700 border-l-4 px-8 py-2 rounded-3xl">Add New Task</span>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do List</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    
+    <body class="bg-gray-100 p-8">
+        <header class="flex justify-evenly mb-20">
+            <h2 id="task" class="px-5 py-3 bg-blue-600 text-white rounded-2xl cursor-pointer">Add Task +</h2>
+            <input class="w-1/2 px-8 py-2 border border-black-300 rounded-md" type="text"
+                placeholder="Rechercher une tâche...">
+            <h2 class="px-5 py-3 bg-blue-600 text-white rounded-2xl cursor-pointer">Add Multiple +</h2>
+        </header>
+    
+        <section class="grid grid-cols-3 gap-8" id="test">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="border-b-4 border-red-500 pb-2 mb-8">To Do</h3>
+                <div id="to-do-list" class="space-y-2"></div>
             </div>
-            <form class="bg-white text-black flex-col justify-center gap-5 border-4 border-black p-5 rounded-3xl w-full">
-                <label for="titre">Titre</label>
-                <input type="text" placeholder="task titre" class="border border-black rounded-3xl px-2 w-full">
-                <label for="date">Date</label>
-                <input type="date" placeholder="task date" class="border border-black rounded-3xl px-2 w-full">
-                <label for="description">Description</label>
-                <textarea cols="40" rows="4" placeholder="task description" class="border border-black rounded-3xl px-2 w-full"></textarea>
-
-                <div class="flex gap-5 my-4">
-                    <div>
-                        <label for="type">Type</label>
-                        <select name="type" id="type" class="border border-black rounded-3xl px-2 w-full">
-                            <option value="Todo">To do</option>
-                            <option value="Doing">Doing</option>
-                            <option value="Done">Done</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="priority">Priority</label>
-                        <select name="priority" id="priority" class="border border-black rounded-3xl px-2 w-full">
-                            <option value="p1">P1</option>
-                            <option value="p2">P2</option>
-                            <option value="p3">P3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700 my-5">Add Task</button>
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="border-b-4 border-blue-500 pb-2 mb-4">Doing</h3>
+                <div id="in-progress-list" class="space-y-2"></div>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="border-b-4 border-green-500 pb-2 mb-4">Done</h3>
+                <div id="done-list" class="space-y-2"></div>
+            </div>
+        </section>
+    
+        <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+            <form id="task-form" class="bg-gray-500 p-6 w-1/3 rounded-md mt-6 mx-auto">
+                <label class="text-white mb-2">Titre de tâche</label>
+                <input type="text" id="task-title" class="w-full px-3 py-2 border border-black rounded mb-4">
+    
+                <label class="text-white mb-2">Date d’échéance</label>
+                <input type="date" id="task-date" class="w-full px-3 py-2 border border-black rounded mb-4">
+    
+                <label class="text-white mb-2">Priorité visuelle</label>
+                <select id="task-priority" class="w-full px-3 py-2 border border-black rounded mb-4">
+                    <option value="P1 (en rouge)">P1 (en rouge)</option>
+                    <option value="P2 (en orange)">P2 (en orange)</option>
+                    <option value="P3 (en vert)">P3 (en vert)</option>
+                </select>
+    
+                <label class="text-white mb-2">Catégorie</label>
+                <select id="task-category" class="w-full px-3 py-2 border border-black rounded mb-4">
+                    <option value="to-do-list">To Do</option>
+                    <option value="in-progress-list">Doing</option>
+                    <option value="done-list">Done</option>
+                </select>
+    
+    
+                <div class="flex justify-between">
+                    <button type="button" id="cancel"
+                        class="bg-cyan-500 border border-white rounded px-4 py-2 text-white">Annuler</button>
+                    <button type="submit"
+                        class="bg-cyan-500 border border-white rounded px-4 py-2 text-white">Ajouter</button>
                 </div>
             </form>
-        </section>
-    </div>
+        </div>
+    
+        <script src="index.js"></script>
+    </body>
+    
+    </html>
 
     <script>
-        // Toggle Modal Function
-        function toggleModal() {
-            const modal = document.getElementById("addModal");
+        const addTaskBtn = document.getElementById("task");
+const addForm = document.getElementById("task-form");
+const cancelBtn = document.getElementById("cancel");
+const toDoList = document.getElementById("to-do-list");
+const modal = document.getElementById("modal");
+const inProgressList = document.getElementById("in-progress-list");
+const doneList = document.getElementById("done-list");
 
-            if (modal.classList.contains("hidden")) {
-                modal.classList.remove("hidden");
-                setTimeout(() => {
-                    modal.classList.add("show");
-                }, 10); // Delay to apply show for smooth animation
-            } else {
-                modal.classList.remove("show");
-                setTimeout(() => {
-                    modal.classList.add("hidden");
-                }, 300); // Duration matched with CSS transition
-            }
-        }
+addTaskBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden"); // Affiche le modal
+    addForm.classList.remove("hidden"); // Affiche le formulaire
+});
+
+cancelBtn.addEventListener("click", () => {
+    addForm.classList.add("hidden"); // Cache le formulaire
+    modal.classList.add("hidden"); // Cache le modal
+});
+
+addForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Empêche la soumission par défaut
+
+    const title = document.getElementById("task-title").value;
+    const date = document.getElementById("task-date").value;
+    const priority = document.getElementById("task-priority").value;
+    const category = document.getElementById("task-category").value;
+
+    // Crée un nouvel élément de tâche
+    const taskElement = document.createElement("div");
+    taskElement.classList.add("p-4", "rounded", "border", "white");
+
+    if (priority.includes("P1 (en rouge)")) {
+        taskElement.classList.add("bg-red-600");
+    } else if (priority.includes("P2 (en orange)")) {
+        taskElement.classList.add("bg-orange-600");
+    } else if (priority.includes("P3 (en vert)")) {
+        taskElement.classList.add("bg-green-600");
+    }
+
+    taskElement.innerHTML = `<strong>${title}</strong><br><span>${date}</span>`;
+
+    // Ajoute la tâche dans la catégorie sélectionnée
+    if (category === "to-do-list") {
+        toDoList.appendChild(taskElement);
+    } else if (category === "in-progress-list") {
+        inProgressList.appendChild(taskElement);
+    } else if (category === "done-list") {
+        doneList.appendChild(taskElement);
+    }
+    addForm.reset();
+    addForm.classList.add("hidden"); // Cache le formulaire après l'ajout
+    modal.classList.add("hidden"); // Cache le modal après l'ajout
+});
     </script>
-
 </body>
 </html>

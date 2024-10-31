@@ -28,7 +28,7 @@
     <main  class="flex flex-wrap justify-center align-middle my-6 gap-[120px]">
 
         <!-- to do -->
-        <section id="add-task" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
+        <section id="todo" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
             <div class="flex justify-center align-middle my-2 gap-[300px]">
                 <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">To do</span>
             </div>
@@ -36,7 +36,7 @@
 
 
         <!-- doing -->
-        <section id="add-task" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
+        <section id="doing"  class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
             <div class="flex justify-center align-middle my-2 gap-[300px]">
                 <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">Doing</span>
             </div>
@@ -44,7 +44,7 @@
 
 
         <!-- done -->
-        <section class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
+        <section id="done" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
             <div class="flex justify-center align-middle my-2 gap-[300px]">
                 <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">Done</span>
             </div>
@@ -56,7 +56,7 @@
     <!-- ajouté task form -->
 
     <section id="addModal" class="hidden model-animation fixed inset-0 bg-black bg-opacity-75 ">
-        <div class="flex flex-wrap justify-center align-middle my-[50px] gap-[120px]">
+        <div id="task-modal" class="flex flex-wrap justify-center align-middle my-[50px] gap-[120px]">
             <div class="bg-black text-white border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" style="max-width: 500px;">
                 <div class="flex justify-center align-middle my-2 gap-[300px]">
                     <span class="border border-gray-700 border-l-4 px-2 py-1 rounded-3xl bg-blue-950">add new task</span>
@@ -71,11 +71,11 @@
                     <textarea id="description" type="text" cols="40" rows="4" placeholder="task description" class="border border-black rounded-3xl px-2 w-[100%]"></textarea>
                     
                     <div class="flex gap-5">
-                        <label for="titre">type</label>
+                        <label for="statut">type</label>
                         <select id="statut" name="priorite" id="priorite" class="border border-black rounded-3xl px-2 w-[50%]">
-                            <option id="Todo" value="Todo">To do</option>
-                            <option value="Doing">Doing</option>
-                            <option value="Done">Done</option>
+                            <option value="Todo">To do</option>
+                            <option value="doing">Doing</option>
+                            <option value="done">Done</option>
                         </select>
                         <label for="titre">priorite</label>
                         <select id="priorite" name="priorite" id="priorite" class="border border-black rounded-3xl px-2 w-[50%]">
