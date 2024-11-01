@@ -25,7 +25,7 @@
     </nav>
 
     <!-- main -->
-    <main  class="flex flex-wrap justify-center align-middle my-6 gap-[120px]">
+    <main  class="flex flex-wrap justify-center align-middle my-6 gap-[120px] items-start">
 
         <!-- to do -->
         <section id="todo" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
@@ -36,10 +36,11 @@
 
 
         <!-- doing -->
-        <section id="doing"  class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
+        <section class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
             <div class="flex justify-center align-middle my-2 gap-[300px]">
                 <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">Doing</span>
             </div>
+            <div id="doing"></div>
         </section>
 
 
@@ -79,9 +80,9 @@
                         </select>
                         <label for="titre">priorite</label>
                         <select id="priorite" name="priorite" id="priorite" class="border border-black rounded-3xl px-2 w-[50%]">
-                            <option value="p1">P1</option>
-                            <option value="p2">P2</option>
-                            <option value="p3">P3</option>
+                            <option value="p1">P1(red)</option>
+                            <option value="p2">P2(orange)</option>
+                            <option value="p3">P3(green)</option>
                         </select>
                     </div>
                     <div class="flex justify-center">

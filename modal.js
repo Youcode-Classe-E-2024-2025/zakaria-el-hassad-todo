@@ -156,31 +156,42 @@ function rutornpage() {
 
 
 
+
 addForm.addEventListener("submit", (event) => {
     event.preventDefault();
 const titre = document.getElementById("titre").value;
 const date = document.getElementById("date").value;
 const statut=document.getElementById("statut").value;
+const priorite=document.getElementById("priorite").value;
 const description = document.getElementById("description").value;
 
 const taskElement = document.createElement("div");
+
+    taskElement.classList.add("flex","flex-wrap", "justify-center", "gap-5","p-4", "border","border-l-8","p-2", "rounded-3xl" ,"w-[100%]" ,"my-1");
+
+    if (priorite.includes("p1")) {
+        taskElement.classList.add("border-red-700");
+    } else if (priorite.includes("p2")) {
+        taskElement.classList.add("border-orange-400");
+    } else if (priorite.includes("p3")) {
+        taskElement.classList.add("border-green-700");
+    }
+
 taskElement.innerHTML = `
-                        <div id="task" class="flex flex-wrap justify-center gap-5 border border-l-8 border-red-700  p-2 rounded-3xl w-[100%] my-1 ">
                 <div onclick="showFullText()" class="col-span-1 border-4 border-black hover:border-blue-300 px-8 py-2 rounded-3xl my-2">
                     <p>
                         <span>Titre :</span>
-                        <span id="myspan">${titre.value}</span>
+                        <span id="myspan">${titre}</span>
                     </p>
                     <p>
                         <span>Date :</span>
-                        <span>${date.value}</span>
+                        <span>${date}</span>
                     </p>
                 </div>
                 <div class="grid grid-cols-1">
-                    <button type="button" class="text-white bg-red-700 hover:bg-red-400 rounded-3xl border border-x-4 border-red-700 hover:border-red-400 mb-2"><img src="../img/poubelle.png" alt="" style="width: 15px; height: 15px; margin: 10px;"></button>
-                    <button type="button" class="text-white bg-green-700 hover:bg-green-400 rounded-3xl border border-x-4 border-green-700 hover:border-green-400 "><img src="../img/editer.png" alt="" style="width: 15px; height: 15px; margin: 10px;"></button>
+                    <button onClick="deletePost(this)" type="button" class="text-white bg-red-700 hover:bg-red-400 rounded-3xl border border-x-4 border-red-700 hover:border-red-400 mb-2"><img src="../img/poubelle.png" alt="" style="width: 15px; height: 15px; margin: 10px;"></button>
+                    <button onClick="editPost(this)" type="button" class="text-white bg-green-700 hover:bg-green-400 rounded-3xl border border-x-4 border-green-700 hover:border-green-400 "><img src="../img/editer.png" alt="" style="width: 15px; height: 15px; margin: 10px;"></button>
                 </div>
-            </div>
                 `
 
                 if (statut === "todo") {
@@ -194,6 +205,12 @@ taskElement.innerHTML = `
                 addForm.classList.add("hidden"); 
                 modal.classList.add("hidden"); 
 });
+
+let deletePost = (e) => {
+    e.parentElement.parentElement.remove();
+  };
+
+
 
 
 
