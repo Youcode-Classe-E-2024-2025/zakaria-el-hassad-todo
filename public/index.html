@@ -16,11 +16,10 @@
         <div class="flex justify-center align-middle m-0">
             <img src="../img/zh.png" alt="" style="width: 150px; height: 150px;"> 
         </div>
-        <!-- <img src="../img/zh.png" alt="" style="width: 50px; height: 50px;"> -->
         <div class="flex flex-wrap justify-center align-middle gap-12 ">
-            <button type="button" id="openModalButton" onclick="toggleModal()" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700">Add model</button>
+            <button type="button" onclick="toggleModal()" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700">Add model</button>
             <input type="search" name="search" id="search" placeholder="search" class="border border-black border-x-4 px-10 py-2 rounded-3xl">
-            <button type="button" id="openModalButton" onclick="toggleModal()" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700">Add model</button>
+            <button type="button" onclick="toggleModal1()" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700">Add multiple</button>
         </div>
     </nav>
 
@@ -28,27 +27,33 @@
     <main  class="flex flex-wrap justify-center align-middle my-6 gap-[120px] items-start">
 
         <!-- to do -->
-        <section id="todo" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
-            <div class="flex justify-center align-middle my-2 gap-[300px]">
-                <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">To do</span>
+        <section class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl w-[350px]" >
+            <div class="flex justify-between align-middle my-1">
+                <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl">To do</span>
+                <p id="conteur-todo" class="flex justify-center items-center border border-gray-700 border-r-4 border-l-4 px-2 rounded-3xl">0</p>
+
             </div>
+            <div id="todo"></div>
         </section>
 
 
         <!-- doing -->
-        <section class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
-            <div class="flex justify-center align-middle my-2 gap-[300px]">
+        <section class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl w-[350px]" >
+            <div class="flex justify-between align-middle my-2">
                 <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">Doing</span>
+                <p id="conteur-doing" class="flex justify-center items-center border border-gray-700 border-r-4 border-l-4 px-2 rounded-3xl">0</p>
             </div>
             <div id="doing"></div>
         </section>
 
 
         <!-- done -->
-        <section id="done" class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" >
-            <div class="flex justify-center align-middle my-2 gap-[300px]">
+        <section class="border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl w-[350px]" >
+            <div class="flex justify-between align-middle my-2">
                 <span class="border border-gray-700 border-r-4 border-l-4 px-8 py-2 rounded-3xl ">Done</span>
+                <p id="conteur-done" class="flex justify-center items-center border border-gray-700 border-r-4 border-l-4 px-2 rounded-3xl">0</p>
             </div>
+            <div id="done"></div>
         </section>
 
     </main>
@@ -57,7 +62,7 @@
     <!-- ajouté task form -->
 
     <section id="addModal" class="hidden model-animation fixed inset-0 bg-black bg-opacity-75 ">
-        <div id="task-modal" class="flex flex-wrap justify-center align-middle my-[50px] gap-[120px]">
+        <div id="task-modal"class="flex flex-wrap justify-center align-middle my-[50px] gap-[120px]">
             <div class="bg-black text-white border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" style="max-width: 500px;">
                 <div class="flex justify-center align-middle my-2 gap-[300px]">
                     <span class="border border-gray-700 border-l-4 px-2 py-1 rounded-3xl bg-blue-950">add new task</span>
@@ -86,9 +91,50 @@
                         </select>
                     </div>
                     <div class="flex justify-center">
-                        <button id="add-task-btn" type="submit" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700 my-5 " >ajouter task</button>
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700 my-5 " >add</button>
                     </div>
                 </form>
+                
+            </div>
+        </div>
+    </section>
+
+<!-- ajouté mul -->
+
+    <section id="addModal1" class="hidden model-animation fixed inset-0 bg-black bg-opacity-75 ">
+        <div id="moltiplrModal" class="flex flex-wrap justify-center align-middle my-[50px] gap-[120px]">
+            <div class="bg-black text-white border border-gray-700 border-r-4 border-l-4 px-2 py-2 rounded-3xl" style="max-width: 500px;">
+                <div class="flex justify-center align-middle my-2 gap-[300px]">
+                    <span class="border border-gray-700 border-l-4 px-2 py-1 rounded-3xl bg-blue-950">add multiple task</span>
+                    <button type="button" id="rotorn" onclick="rutornpage1()" class="border border-gray-700 hover:border-gray-200 border-l-4 px-1 py-1 rounded-3xl bg-blue-950"><img src="../img/x.png" alt="" style="width: 15px; height: 15px; margin: 10px;"></button>
+                </div>
+                <form action="" method="post" class="bg-white text-black flex-col justify-center gap-5 border-4 border-black  hover:border-blue-800 p-5 rounded-3xl w-[100%] ">
+                    <label for="titre">Titre</label>
+                    <input id="titre1" type="text" placeholder="task titre" class="border border-black rounded-3xl px-2 w-[100%]">
+                    <label for="date">Date</label>
+                    <input id="date1" type="date" placeholder="task date" class="border border-black rounded-3xl px-2 w-[100%]">
+                    <label for="titre">description</label>
+                    <textarea id="description1" type="text" cols="40" rows="4" placeholder="task description" class="border border-black rounded-3xl px-2 w-[100%]"></textarea>
+                    
+                    <div class="flex gap-5">
+                        <label for="statut">type</label>
+                        <select id="statut1" name="priorite" id="priorite" class="border border-black rounded-3xl px-2 w-[50%]">
+                            <option value="todo">To do</option>
+                            <option value="doing">Doing</option>
+                            <option value="done">Done</option>
+                        </select>
+                        <label for="titre">priorite</label>
+                        <select id="priorite1" name="priorite" id="priorite" class="border border-black rounded-3xl px-2 w-[50%]">
+                            <option value="p1">P1(red)</option>
+                            <option value="p2">P2(orange)</option>
+                            <option value="p3">P3(green)</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-400 px-8 py-2 rounded-3xl border border-x-4 border-blue-400 hover:border-blue-700 my-5 " >add</button>
+                    </div>
+                </form>
+                
             </div>
         </div>
     </section>
